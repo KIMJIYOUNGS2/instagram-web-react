@@ -9,3 +9,13 @@ npm i @fortawesome/free-solid-svg-icons
 npm i @fortawesome/react-fontawesome
 
 npm i -g apollo
+
+## todo
+
+- folder structure
+- router settings
+- screens function make
+  - Login
+  - SignUp
+  - Home
+  - Profile
