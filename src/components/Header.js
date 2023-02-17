@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faPaperPlane, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -33,7 +34,7 @@ const Column = styled.div``;
 const Icon = styled.span`
   margin-left: 5px;
 `;
-const Button = styled.span``;
+// const Button = styled.span``;
 
 // const Header = () => {};
 
@@ -42,8 +43,11 @@ function Header() {
     <HeaderContainer>
       <Wrapper>
         <Column>
-          <FontAwesomeIcon size={"2x"} icon={faInstagram} />
+          <Link to={`/`}>
+            <FontAwesomeIcon size={"2x"} icon={faInstagram} />
+          </Link>
         </Column>
+
         <Column>
           <IconsContainer>
             <Icon>
@@ -53,7 +57,9 @@ function Header() {
               <FontAwesomeIcon size="lg" icon={faPaperPlane} />
             </Icon>
             <Icon>
-              <FontAwesomeIcon size="lg" icon={faUser} />
+              <Link to={"/profile/jiyoung"}>
+                <FontAwesomeIcon size="lg" icon={faUser} />
+              </Link>
             </Icon>
           </IconsContainer>
         </Column>
