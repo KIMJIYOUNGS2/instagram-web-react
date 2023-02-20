@@ -14,6 +14,7 @@ const HeaderContainer = styled.header`
   padding: 18px 0;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
   background-color: ${(props) => props.theme.bgColor};
+  margin-bottom: 20px;
 `;
 
 const Wrapper = styled.div`
