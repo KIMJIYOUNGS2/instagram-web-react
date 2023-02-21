@@ -85,7 +85,7 @@ function Profile() {
         <ProfileImg src={coco} />
         <ProfileInfo>
           <Row>
-            <Username>닉네임</Username>
+            <Username>닉네임 들어갈 자리</Username>
             <FollowBtn>팔로우</FollowBtn>
           </Row>
           <Row>
@@ -96,7 +96,6 @@ function Profile() {
           </Row>
           <Row>
             <div>소개글</div>
-            {/* <div>{profile}</div> */}
           </Row>
         </ProfileInfo>
       </ProfileHeader>

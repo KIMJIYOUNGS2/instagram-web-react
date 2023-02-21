@@ -23,18 +23,21 @@ const CommentCount = styled.span`
   margin-bottom: 10px;
 `;
 
-function Comments() {
+function Comments({ author, caption, comments, commentNumber }) {
   return (
     <CommentsContainer>
       <CommentContainer>
-        <CommentAuthor>작성자</CommentAuthor>
-        <CommentContent>댓글 내용</CommentContent>
+        <CommentAuthor>{author}</CommentAuthor>
+        <CommentContent>{caption}</CommentContent>
       </CommentContainer>
-      <CommentCount>댓글 1개 모두보기</CommentCount>
-      <CommentContainer>
-        <CommentAuthor>댓글 작성자1</CommentAuthor>
-        <CommentContent>댓글 1</CommentContent>
-      </CommentContainer>
+      <CommentCount>댓글 {commentNumber}개 모두보기</CommentCount>
+
+      {comments?.map((comment) => (
+        <CommentContainer>
+          <CommentAuthor>{comment.user.username}</CommentAuthor>
+          <CommentContent>{comment.payload}</CommentContent>
+        </CommentContainer>
+      ))}
     </CommentsContainer>
   );
 }

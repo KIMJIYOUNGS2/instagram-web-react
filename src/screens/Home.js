@@ -1,132 +1,91 @@
-// import Header from "components/Header";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import coco from "../images/coco.jpg";
-import {
-  faBookmark,
-  faComment,
-  faHeart,
-  faPaperPlane,
-} from "@fortawesome/free-regular-svg-icons";
-import Comments from "components/Comments";
-import { Link } from "react-router-dom";
-
-// component 구성 먼저 잡기
-const FeedContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  // width: 90vw;
-  max-width: 100vw;
-  height: 90%;
-  border: 1px solid black;
-  margin: 20px 0px 20px 20px;
-`;
-const FeedHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  position: static;
-  top: 20px;
-  left: 30px;
-  padding: 15px;
-  // border: 3px solid rgb(219, 219, 219);
-  width: 100%;
-  height: auto;
-`;
-const UserPhoto = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const UserName = styled.span`
-  margin-left: 10px;
-  font-weight: 600;
-  display: flex;
-  // justify-content: center;
-  align-items: center;
-  // margin: 5px;
-`;
-
-const FeedPhoto = styled.img`
-  width: 100%;
-  max-width: 100%;
-  // display: flex;
-  // align-items: center;
-  // border: 1px solid black;
-  // height: 70vh;
-`;
-
-const FeedActionContainer = styled.div`
-  padding: 12px 15px;
-`;
-const FeedWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  div {
-    display: flex;
-    align-items: center;
-  }
-
-  svg {
-    font-size: 20px;
-  }
-`;
-
-const FeedAction = styled.div`
-  margin-right: 10px;
-  cursor: pointer;
-`;
-
-const Likes = styled.span`
-  font-weight: 600;
-  margin-top: 15px;
-  display: block;
-`;
+import React from "react";
+import Feed from "components/Feed";
 
 function Home() {
+  // 더미 데이터 생성 (실제로는 django에서 불러오는 데이터)
+
+  const data = [
+    {
+      id: 1,
+      file: "https://mblogthumb-phinf.pstatic.net/MjAyMTExMTlfMTg2/MDAxNjM3MjU1MjI4NjA2.8KNWjaT6V2G3ICdVK9XvBVdbGaZx_hvWMGqBois31Kgg.S14Oy2mp2UYsHgtJeAZFkakh8Cf0BnZScGmB57LSpsIg.JPEG.letyourselfglow/IMG_1583.jpg?type=w800",
+      caption: "데이터1",
+      user: {
+        username: "dev1",
+        profileImg:
+          "https://mblogthumb-phinf.pstatic.net/MjAyMTExMTlfMTg2/MDAxNjM3MjU1MjI4NjA2.8KNWjaT6V2G3ICdVK9XvBVdbGaZx_hvWMGqBois31Kgg.S14Oy2mp2UYsHgtJeAZFkakh8Cf0BnZScGmB57LSpsIg.JPEG.letyourselfglow/IMG_1583.jpg?type=w800",
+      },
+      likes: 100,
+      commentNumber: 11,
+      isLiked: true,
+      comments: [
+        {
+          id: 11,
+          payload: "첫 번째 댓글",
+          user: {
+            username: "댓글작성자1",
+            profileImg:
+              "https://media.istockphoto.com/id/627540386/ko/%EC%82%AC%EC%A7%84/%EB%B0%B1%EB%91%90%EC%82%B0%ED%98%B8%EB%9E%91%EC%9D%B4.jpg?s=612x612&w=0&k=20&c=GOpE37E0hWQ2_M6RAmznGhZal5H_zMx5r_1iu-FaF8o=",
+          },
+        },
+      ],
+    },
+
+    {
+      id: 2,
+      file: "https://cdn.eyesmag.com/content/uploads/posts/2020/05/06/%EC%84%A0%EB%8D%B0%EC%9D%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%20ep6_01_%EC%88%98%EC%A0%95-72d0c70d-1a58-41e0-9b48-7a81232cadf5.png",
+      caption: "데이터2",
+      user: {
+        username: "dev2",
+        profileImg:
+          "https://cdn.maily.so/202212/trendaword/1670286682334195.png",
+      },
+      likes: 200,
+      commentNumber: 22,
+      isLiked: true,
+      comments: [
+        {
+          id: 11,
+          payload: "두 번째 댓글",
+          user: {
+            username: "댓글작성자2",
+            profileImg:
+              "https://media.istockphoto.com/id/627540386/ko/%EC%82%AC%EC%A7%84/%EB%B0%B1%EB%91%90%EC%82%B0%ED%98%B8%EB%9E%91%EC%9D%B4.jpg?s=612x612&w=0&k=20&c=GOpE37E0hWQ2_M6RAmznGhZal5H_zMx5r_1iu-FaF8o=",
+          },
+        },
+      ],
+    },
+
+    {
+      id: 3,
+      file: "https://www.jungle.co.kr/image/ea06cd0346fa8777cb624e3f",
+      caption: "데이터3",
+      user: {
+        username: "dev3",
+        profileImg: "https://newsimg.sedaily.com/2019/01/23/1VE5F3W5WP_18.png",
+      },
+      likes: 300,
+      commentNumber: 33,
+      isLiked: true,
+      comments: [
+        {
+          id: 11,
+          payload: "세 번째 댓글",
+          user: {
+            username: "댓글작성자3",
+            profileImg:
+              "https://media.istockphoto.com/id/627540386/ko/%EC%82%AC%EC%A7%84/%EB%B0%B1%EB%91%90%EC%82%B0%ED%98%B8%EB%9E%91%EC%9D%B4.jpg?s=612x612&w=0&k=20&c=GOpE37E0hWQ2_M6RAmznGhZal5H_zMx5r_1iu-FaF8o=",
+          },
+        },
+      ],
+    },
+  ];
+
   return (
-    <FeedContainer>
-      <FeedHeader>
-        <Link to="/profile">
-          <UserPhoto>
-            <FontAwesomeIcon size="2x" icon={faCircleUser} />
-          </UserPhoto>
-        </Link>
-        <UserName>집사</UserName>
-      </FeedHeader>
-      <FeedPhoto src={coco} />
-      {/* <FeedPhoto src="https://ichef.bbci.co.uk/news/640/cpsprodpb/E172/production/_126241775_getty_cats.png" /> */}
-
-      <FeedActionContainer>
-        <FeedWrapper>
-          <div>
-            <FeedAction>
-              <FontAwesomeIcon
-                style={{ color: true ? "tomato" : "inherit" }}
-                icon={true ? faHeart : faHeart}
-              />
-            </FeedAction>
-
-            <FeedAction>
-              <FontAwesomeIcon size="2x" icon={faComment} />
-            </FeedAction>
-
-            <FontAwesomeIcon size="2x" icon={faPaperPlane} />
-          </div>
-
-          <div>
-            <FeedAction>
-              <FontAwesomeIcon size="2x" icon={faBookmark} />
-            </FeedAction>
-          </div>
-        </FeedWrapper>
-
-        <Likes>1 likes</Likes>
-        <Comments />
-      </FeedActionContainer>
-    </FeedContainer>
+    <>
+      {data?.map((feed) => (
+        <Feed key={feed.id} {...feed} />
+      ))}
+    </>
   );
 }
 
