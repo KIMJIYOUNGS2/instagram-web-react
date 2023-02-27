@@ -80,10 +80,11 @@ function Feed({
   file,
   caption,
   user,
-  likes,
-  commentNumber,
-  comments,
+  likesNum,
+  reviewsNum,
+  reviews,
   isLiked,
+  contentImg,
 }) {
   return (
     <FeedContainer key={id}>
@@ -92,7 +93,7 @@ function Feed({
         <UserName>{user.username}</UserName>
       </FeedHeader>
 
-      <FeedPhoto src={file} />
+      <FeedPhoto src={contentImg} />
 
       <FeedActionContainer>
         <FeedWrapper>
@@ -117,14 +118,14 @@ function Feed({
             </FeedAction>
           </div>
         </FeedWrapper>
-        <Likes>{likes} likes</Likes>
+        <Likes>{likesNum} likes</Likes>
 
         <Comments
           key={id}
           author={user.username} // 글 작성자
           caption={caption} // 글 내용
-          comments={comments} // 댓글들 (댓글 작성자, 댓글 내용)
-          commentNumber={commentNumber} // 댓글 개수
+          comments={reviews} // 댓글들 (댓글 작성자, 댓글 내용)
+          reviewsNum={reviewsNum} // 댓글 개수
         />
       </FeedActionContainer>
     </FeedContainer>
